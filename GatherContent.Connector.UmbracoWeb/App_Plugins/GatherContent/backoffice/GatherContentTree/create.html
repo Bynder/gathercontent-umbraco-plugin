@@ -1,0 +1,22 @@
+﻿<div class="umb-dialog-body with-footer">
+    <div class="umb-pane">
+        <h5><localize key="create_createUnder">Create something under </localize> {{currentNode.name}}</h5>
+
+        <ul class="umb-actions umb-actions-child">
+            <li>
+                <a href="#/CustomSection/CustomSectionTree/edit/dashboard?create=true" ng-click="nav.hideNavigation()">
+                    <i class="large icon-car"></i>
+                    <span class="menu-label">
+                        New custom item
+                        <small>Click here to create this super custom item</small>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="umb-dialog-footer btn-toolbar umb-btn-toolbar">
+    <button class="btn" ng-click="nav.hideDialog()">
+        <localize key="buttons_somethingElse">Do something else</localize>
+    </button>
+</div>

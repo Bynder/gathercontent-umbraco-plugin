@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11CB73A3-27B2-4036-B9E1-04698CCB9CDF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GatherContent.Connector.UmbracoManagers</RootNamespace>
+    <AssemblyName>GatherContent.Connector.UmbracoManagers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.4\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.5\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+    <OutputPath>bin\Release 7.4\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+    <OutputPath>bin\Release 7.5\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+    <OutputPath>bin\Release 7.3\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.3\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\TryMapItemState.cs" />
+    <Compile Include="Interfaces\ICacheManager.cs" />
+    <Compile Include="Interfaces\IDropTreeManager.cs" />
+    <Compile Include="Interfaces\IImportManager.cs" />
+    <Compile Include="Interfaces\IManager.cs" />
+    <Compile Include="Interfaces\IMappingManager.cs" />
+    <Compile Include="Interfaces\IUpdateManager.cs" />
+    <Compile Include="IoC\FactoryService.cs" />
+    <Compile Include="Managers\AccountSettingManager.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Managers\CacheManager.cs" />
+    <Compile Include="Interfaces\IAccountSettingManager.cs" />
+    <Compile Include="Managers\ImportManager.cs" />
+    <Compile Include="Managers\MappingManager.cs" />
+    <Compile Include="Managers\TestConnectionManager.cs" />
+    <Compile Include="Managers\UpdateManager.cs" />
+    <Compile Include="Models\ImportItems\AvailableMapping.cs" />
+    <Compile Include="Models\ImportItems\AvailableMultiLocationsMappings.cs" />
+    <Compile Include="Models\ImportItems\DropTreeModel.cs" />
+    <Compile Include="Models\ImportItems\FiltersModel.cs" />
+    <Compile Include="Models\ImportItems\ImportCMSFiled.cs" />
+    <Compile Include="Models\ImportItems\ImportItembyLocation.cs" />
+    <Compile Include="Models\ImportItems\ImportItemModel.cs" />
+    <Compile Include="Models\ImportItems\ImportListItem.cs" />
+    <Compile Include="Models\ImportItems\ImportResultItemModel.cs" />
+    <Compile Include="Models\ImportItems\ImportResultModel.cs" />
+    <Compile Include="Models\ImportItems\ItemWithLocationDataModel.cs" />
+    <Compile Include="Models\ImportItems\LocationImportItemModel.cs" />
+    <Compile Include="Models\ImportItems\MappingResultModel.cs" />
+    <Compile Include="Models\ImportItems\New\AvailableMapping.cs" />
+    <Compile Include="Models\ImportItems\New\FiltersModel.cs" />
+    <Compile Include="Models\ImportItems\New\GcItemModel.cs" />
+    <Compile Include="Models\ImportItems\New\ItemModel.cs" />
+    <Compile Include="Models\ImportItems\New\ItemResultModel.cs" />
+    <Compile Include="Models\ImportItems\SelectItemsForImportModel.cs" />
+    <Compile Include="Models\ImportItems\SelectItemsForImportWithLocation.cs" />
+    <Compile Include="Models\ImportItems\TableDataModel.cs" />
+    <Compile Include="Models\Mapping\CmsTemplateFieldModel.cs" />
+    <Compile Include="Models\Mapping\CmsTemplateModel.cs" />
+    <Compile Include="Models\Mapping\FieldMappingModel.cs" />
+    <Compile Include="Models\Mapping\GcFieldModel.cs" />
+    <Compile Include="Models\Mapping\GcProjectModel.cs" />
+    <Compile Include="Models\Mapping\GcStatusModel.cs" />
+    <Compile Include="Models\Mapping\GcTabModel.cs" />
+    <Compile Include="Models\Mapping\GcTemplateModel.cs" />
+    <Compile Include="Models\Mapping\MappingModel.cs" />
+    <Compile Include="Models\UpdateItems\New\UpdateItemModel.cs" />
+    <Compile Include="Models\UpdateItems\New\UpdateModel.cs" />
+    <Compile Include="Models\UpdateItems\UpdateFiltersModel.cs" />
+    <Compile Include="Models\UpdateItems\UpdateGCItem.cs" />
+    <Compile Include="Models\UpdateItems\UpdateListIds.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GatherContent.Connector.Entities\GatherContent.Connector.Entities.csproj">
+      <Project>{A40787E3-7DF6-41B9-90C0-41704AEA2BE3}</Project>
+      <Name>GatherContent.Connector.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatherContent.Connector.GatherContentService\GatherContent.Connector.GatherContentService.csproj">
+      <Project>{42B1CCBC-1FC4-4601-9D53-63B69AFAB68D}</Project>
+      <Name>GatherContent.Connector.GatherContentService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatherContent.Connector.IRepositories\GatherContent.Connector.IRepositories.csproj">
+      <Project>{D164C4DD-8A92-43D0-B5D3-7F43C13D660C}</Project>
+      <Name>GatherContent.Connector.IRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatherContent.Connector.UmbracoRepositories\GatherContent.Connector.UmbracoRepositories.csproj">
+      <Project>{783E134A-43F7-4700-BA0B-5EB4C0108CDE}</Project>
+      <Name>GatherContent.Connector.UmbracoRepositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="App_Config\repositories.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

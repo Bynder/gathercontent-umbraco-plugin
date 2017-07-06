@@ -1,0 +1,145 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Pull Updated Content from GatherContent</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="update.controller as update" class="umb-pane">
+            <!--<umb-load-indicator ng-style="{'display': !update.busy ? 'none' : ''}"></umb-load-indicator>-->
+            <div ng-style="{'display': !update.busy ? 'none' : ''}" class="umb-load-indicator content-column-body" style="width: 100%; height: 100%;"></div>
+            <div ng-style="{'display': !update.busyUpdate ? 'none' : ''}">
+                <div style="text-align: center; margin-top: 200px;">
+                    <h2 class="title">Update in progress</h2>
+                    <p>Please do not close your browser. Depending on the number of Items you have selected the import can take some time.</p>
+                </div>
+                <!--<umb-load-indicator></umb-load-indicator>-->
+                <div class="umb-load-indicator content-column-body" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div ng-style="{'display': update.busy || update.busyUpdate ? 'none' : ''}">
+                <umb-control-group label="Target Node" description="Select target node to list imported items.">
+                    <input class="umb-editor umb-textstring" type="text" ng-model="update.model.TargetNodeName" disabled required />
+                    <a class="btn" ng-click="update.selectTargetNode()">Open</a>
+                </umb-control-group>
+                <umb-control-group label="Filter" description="You can filter items">
+                    <select class="umb-dropdown" ng-model="update.model.GcTemplateId">
+                        <option value="">Select Template</option>
+                        <option value="{{template.Id}}" ng-repeat="template in update.templates">{{template.Name}}</option>
+                    </select>
+                    <select class="umb-dropdown" ng-model="update.model.Status">
+                        <option value="">Select Status</option>
+                        <option value="{{status.Id}}" ng-repeat="status in update.statuses">{{status.Name}}</option>
+                    </select>
+                    <input class="umb-textstring" type="text" ng-model="update.filterText" placeholder="by name" />
+                </umb-control-group>
+                <div ng-if="!!update.items && update.items.length > 0" class="umb-listview">
+                    <div class="scroll_table_wrapper">
+                        <div class="scroll_table">
+                            <table class="table table-striped centered-table" ng-init="order = 'GcItem.Title'">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2px;">
+                                            <div>
+                                                <input type="checkbox" id="allSelected" ng-model="update.allSelected" />
+                                            </div>
+                                        </th>
+                                        <th style="width: 65px;">
+                                            <div style="width: 65px;">
+                                                <a href ng-click="order = update.selectTableHeader(order,'Status.Name')">Status</a>
+                                                <span ng-style="{'display': order == 'Status.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-Status.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div>
+                                                <a href ng-click="order = update.selectTableHeader(order,'GcItem.Title')">Item Name</a>
+                                                <span ng-style="{'display': order == 'GcItem.Title' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-GcItem.Title' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <!--<th>
+                                            <a href ng-click="order = update.selectTableHeader(order,'GcItem.Title')">GC Item Name</a>
+                                            <span ng-style="{'display': order == 'GcItem.Title' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-GcItem.Title' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </th>-->
+                                        <th style="width: 90px;">
+                                            <div style="width: 90px;">
+                                                <a href ng-click="order = update.selectTableHeader(order,'Project.Name')">GC Project</a>
+                                                <span ng-style="{'display': order == 'Project.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-Project.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 150px;">
+                                            <div style="width: 150px; padding-top: 10px;">
+                                                <a href ng-click="order = update.selectTableHeader(order,'GcItem.LastUpdatedInGc')">Last updated in GatherContent</a>
+                                                <span ng-style="{'display': order == 'GcItem.LastUpdatedInGc' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-GcItem.LastUpdatedInGc' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 150px">
+                                            <div style="width: 150px; padding-top: 10px;">
+                                                <a href ng-click="order = update.selectTableHeader(order,'LastUpdatedInCms')">Last updated in Umbraco</a>
+                                                <span ng-style="{'display': order == 'LastUpdatedInCms' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-LastUpdatedInCms' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 100px;">
+                                            <div style="width: 100px; padding-top: 10px;">
+                                                <a href ng-click="order = update.selectTableHeader(order,'GcTemplate.Name')">GC Template Name</a>
+                                                <span ng-style="{'display': order == 'GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div>
+                                                <a href ng-click="order = update.selectTableHeader(order,'Title')">Umbraco Name</a>
+                                                <span ng-style="{'display': order == 'Title' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-Title' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 70px;">
+                                            <div style="width: 70px; padding-top: 10px;">Open in Umbraco</div>
+                                        </th>
+                                        <th style="width: 70px;">
+                                            <div style="width: 70px; padding-top: 10px;">Open in GC</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in (update.filteredItems = (update.items | filter:{ Title: update.filterText} | filter:{ Status.Id: update.model.Status} | filter:{ GcTemplate.Id: update.model.GcTemplateId} | orderBy:order))">
+                                        <td>
+                                            <input type="checkbox" ng-model="item.Checked" ng-change="update.checkItem()" style="display: block;" />
+                                        </td>
+                                        <td>
+                                            <div style="white-space: nowrap; margin-right: 20px;">
+                                                <div ng-style="{'background-color': item.Status.Color}"
+                                                     style="width: 16px; height: 16px; margin: 2px; float: left;"></div>
+                                                {{item.Status.Name}}
+                                            </div>
+                                        </td>
+                                        <td>{{item.GcItem.Title}}</td>
+                                        <!--<td>{{item.GcItem.Title}}</td>-->
+                                        <td>{{item.Project.Name}}</td>
+                                        
+                                        <td>{{item.GcItem.LastUpdatedInGc}}</td>
+                                        <td>{{item.LastUpdatedInCms}}</td>
+                                        <td>{{item.GcTemplate.Name}}</td>
+                                        <td>{{item.Title}}</td>
+                                        <td><a href="{{item.CmsLink}}">Open</a></td>
+                                        <td><a href="{{item.GcLink}}">Open</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div>
+                    <a class="btn btn-success" ng-if="!!update.items && update.items.length > 0"
+                       href ng-click="update.next()">Update</a>
+                    <a style="margin-left: 70%" href="mailto:support@gathercontent.com">Need help?</a>
+                </div>
+            </div>
+        </div>
+    </umb-tab-view>
+</umb-panel>

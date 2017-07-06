@@ -1,0 +1,114 @@
+﻿<style>
+    .dateWarning {
+        color: #FFBB00 !important;
+    }
+
+    .mapping-empty {
+        /*margin: 60px 25%;*/
+    }
+</style>
+
+<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Gather Content</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="mappings.controller as maps" class="umb-pane">
+            <!--<umb-load-indicator ng-if="maps.busy"></umb-load-indicator>-->
+            <div ng-style="{'display': !maps.busy ? 'none' : ''}" class="umb-load-indicator content-column-body" style="width: 100%; height: 100%;"></div>
+            <div ng-if="!maps.busy" class="umb-tab-pane-inner">
+                <div ng-if="maps.mappings != null && maps.mappings.length > 0" class="umb-listview">
+                    <p>
+                        <h3>Choose which templates you wish to manage.</h3>
+                    </p>
+                    <div class="scroll_table_wrapper">
+                        <div class="scroll_table">
+                            <table class="table table-striped " ng-init="order = 'MappingTitle'">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 110px;">
+                                            <div style="width: 110px;">
+                                                <a href ng-click="order = maps.selectTableHeader(order,'MappingTitle')">Mapping Title</a>
+                                                <span ng-style="{'display': order == 'MappingTitle' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-MappingTitle' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div>
+                                                <a href ng-click="order = maps.selectTableHeader(order,'GcProject.Name')">GatherContent Project</a>
+                                                <span ng-style="{'display': order == 'GcProject.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-GcProject.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div>
+                                                <a href ng-click="order = maps.selectTableHeader(order,'GcTemplate.Name')">GatherContent template</a>
+                                                <span ng-style="{'display': order == 'GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th  style="width: 135px;">
+                                            <div  style="width: 135px;">
+                                                <a href ng-click="order = maps.selectTableHeader(order,'CmsTemplate.Name')">Umbraco Template</a>
+                                                <span ng-style="{'display': order == 'CmsTemplate.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-CmsTemplate.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 156px;">
+                                            <div style="width: 156px;">
+                                                <a href ng-click="order = maps.selectTableHeader(order,'LastMappedDateTime')">Last mapped</a>
+                                                <span ng-style="{'display': order == 'LastMappedDateTime' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-LastMappedDateTime' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 156px;">
+                                            <div style="width: 156px;padding-top: 10px">
+                                                <a href ng-click="order = maps.selectTableHeader(order,'LastUpdatedDate')">Last updated in GatherContent</a>
+                                                <span ng-style="{'display': order == 'LastUpdatedDate' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                                <span ng-style="{'display': order == '-LastUpdatedDate' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                            </div>
+                                        </th>
+                                        <th style="width: 60px;">
+
+                                            <div>Manage</div>
+                                        </th>
+                                        <th style="width: 50px;">
+                                            <div>Delete</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="map in maps.mappings | orderBy:order">
+                                        <td>{{map.MappingTitle}}</td>
+                                        <td>{{map.GcProject.Name}}</td>
+                                        <td>{{map.GcTemplate.Name}}</td>
+                                        <td>{{map.CmsTemplate.Name}}
+                                        <td>
+                                            {{map.LastMappedDateTime}}
+                                        </td>
+                                        <td>{{map.LastUpdatedDate}}</td>
+                                        <td ng-if="!map.RemovedFromGc" class="text-center">
+                                            <a ng-if="map.LastUpdatedDate !== 'Removed from GatherContent'" href="{{'#/GatherContent/GatherContentTree/mappings.edit/'+ map.MappingId + '?gcId=' + map.GcTemplate.Id}}" ng-click="nav.hideNavigation()">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <!--<td ng-if="!!map.RemovedFromGc" class="text-center">Deteted</td>-->
+                                        <td class="text-center"><a href="" ng-click="maps.deleteMapping(map)"><span class="icon-delete large" width="20" height="20"></span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--<umb-content-grid></umb-content-grid>-->
+                </div>
+                <h2 ng-if="maps.mappings == null || maps.mappings.length == 0" class="mapping-empty"> There are no mapping defined. Please click "Add Mapping" to start.</h2>
+                <div>
+                    <a class="btn btn-success" href="#/GatherContent/GatherContentTree/mappings.add/index" ng-click="nav.hideNavigation()">Add mapping</a>
+                    <a style="margin-left: 70%" href="mailto:support@gathercontent.com">Need help?</a>
+                </div>
+            </div>
+        </div>
+    </umb-tab-view>
+</umb-panel>

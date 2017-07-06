@@ -1,0 +1,157 @@
+﻿<!--<style>
+    div.tabHead {
+        width: 20%;
+        float: left;
+    }
+
+    div.tabCol {
+        width: 20%;
+        float: left;
+        background-color: white;
+        margin: 5px;
+    }
+
+    td {
+        border: 1px solid #dbdbdb; /* Граница вокруг ячеек */
+        padding: 5px; /* Поля в ячейках */
+    }
+</style>
+<style>
+    .centered-table td {
+        text-align: center !important;
+    }
+</style>-->
+
+
+<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Confirm import selection</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="import.locations.confirm.controller as confirm" class="umb-pane">
+            <!--<umb-load-indicator ng-style="{'display': !confirm.busy ? 'none' : ''}"></umb-load-indicator>-->
+            <div ng-style="{'display': !confirm.busy ? 'none' : ''}" class="umb-load-indicator content-column-body" style="width: 100%; height: 100%;"></div>
+            <div ng-style="{'display': confirm.busy ? 'none' : ''}">
+                <!--<umb-control-group label="Target Node" description="Please select Target Node">
+                    <input class="umb-editor umb-textstring" type="text" ng-model="confirm.model.TargetNodeName" disabled required/>
+                    <a class="btn" ng-click="confirm.selectTargetNode()">Open</a>
+                </umb-control-group>-->
+                <h3 ng-if="!confirm.items || confirm.items.length == 0">No selected items or no mappings for selected item's templates.</h3>
+                <div ng-if="!!confirm.items && confirm.items.length > 0" class="umb-listview">
+                    <div class="scroll_table_wrapper">
+                        <div class="scroll_table">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div>
+                                                <input style="margin-left: 9px;" type="checkbox" id="allSelected" ng-model="confirm.allSelected"/>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div>Item Name</div>
+                                        </th>
+                                        <th>
+                                            <div>Template Name</div>
+                                        </th>
+                                        <th>
+                                            <div>Mapping Name</div>
+                                        </th>
+                                        <th style="width: 130px;">
+                                            <div style="width: 130px;">Umbraco Template</div>
+                                        </th>
+                                        <th>
+                                            <div>Default Location</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in confirm.items">
+                                        <td>
+                                            <input type="checkbox" ng-model="item.Checked" ng-change="confirm.checkItem()" style="display: inline-block !important"/>
+                                        </td>
+                                        <td style="width: 200px;">
+                                            <div style="width: 200px;">{{item.ItemName}}</div>
+                                        </td>
+                                        <td ng-if="!!item.rowspan" rowspan="{{item.rowspan}}">
+                                            <div>{{item.TemplateName}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{item.MappingName}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{item.CmsTemplateName}}</div>
+                                        </td>
+                                        <td>
+                                            <input type="text" ng-model="item.DefaultLocationTitle" ng-click="confirm.selectTargetNode(item)"
+                                                   style="width: 95%; text-align: center;" readonly />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--<div class="table table-striped">
+                        <div class="tabHead" style="width: 2%"><input type="checkbox"/></div>
+                        <div class="tabHead">Template Name</div>
+                        <div class="tabHead">Mapping Name</div>
+                        <div class="tabHead">Umbraco Template</div>
+                        <div class="tabHead">Default Location</div>
+                        <div ng-repeat="item in confirm.items">
+                            <div ng-if="!!item.AvailableMappings.Mappings && item.AvailableMappings.Mappings.length > 0">
+                                <div style="padding: 5px; height: 20px; background-color: grey; clear: both; color: white; border-radius: 2px;">{{item.GcTemplate.Name}}</div>
+                                <div style="height: 20px;" ng-repeat="mapping in item.AvailableMappings.Mappings">
+                                    <div class="tabCol" style="width: 2%">
+                                        <input type="checkbox"/>
+                                    </div>
+                                    {{ietm.GcItem.Title}}
+                                    <div class="tabCol">{{item.GcTemplate.Name}}</div>
+                                    <div class="tabCol">{{mapping.Title}}</div>
+                                    <div class="tabCol">{{mapping.CmsTemplateName}}</div>
+                                    <div class="tabCol" style="width: 33%">
+                                        <input type="text" ng-model="mapping.DefaultLocationTitle" ng-click="confirm.selectTargetNode(mapping)" readonly/>
+                                    </div>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <br />
+                <p class="footer_btn">
+                    <div style="visibility: hidden;">
+                        <input type="checkbox" ng-model="confirm.isChangeStatus" />
+                        After successful import change status of item to <select class="umb-dropdown" ng-model="confirm.currentStatus" style="margin-top: -4px;">
+                            <option value="">Select Status</option>
+                            <option value="{{status.Id}}" ng-repeat="status in confirm.statuses">{{status.Name}}</option>
+                        </select> inside your GatherContent account.
+                    </div>
+                    <a class="btn btn-warning"
+                       href ng-click="confirm.back()">Back</a>
+                    <div class="btn-group umb-button" ng-if="!!confirm.items && confirm.items.length > 0">
+                        <div ng-if="confirm.saveButtonBusy" class="umb-button__progress -white"></div>
+                        <div class="icon-check umb-button__success -white" ng-if="confirm.saveButtonSuccess"></div>
+                        <a href class="btn btn-success" ng-click="confirm.next()">
+                            <span ng-class="{'-hidden':confirm.saveButtonBusy}">Next</span>
+                        </a>
+                    </div>
+                    <!--<a class="btn btn-success" ng-if="!!confirm.items && confirm.items.length > 0"
+                       href>Import</a>-->
+                    <a style="margin-left: 70%" href="mailto:support@gathercontent.com">Need help?</a>
+                </p>
+                <p></p>
+                <!--<div>
+                </div>-->
+                <!--<div class="btn-group umb-button">
+                    <div ng-if="setCont.saveButtonBusy" class="umb-button__progress -white"></div>
+                    <div class="icon-check umb-button__success -white" ng-if="setCont.saveButtonSuccess"></div>
+                    <button type="submit" data-hotkey="ctrl+s" class="btn btn-success">
+                        <span ng-class="{'-hidden':setCont.saveButtonBusy}">SAVE API CREDENTIALS</span>
+                    </button>
+                </div>-->
+            </div>
+        </div>
+    </umb-tab-view>
+</umb-panel>

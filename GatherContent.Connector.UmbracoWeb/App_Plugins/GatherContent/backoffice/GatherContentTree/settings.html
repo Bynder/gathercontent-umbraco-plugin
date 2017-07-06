@@ -1,0 +1,69 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Gather Content</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <form ng-controller="settings.controller as setCont"
+              ng-submit="setCont.saveSettings(setCont.settings)">
+            <div class="umb-pane container">
+                <div class="umb-control-group row" style="display: block;">
+                    <h5 class="col-md-12">CREDENTIALS AUTHENTICATION</h5>
+                    <h4 class="col-md-12"><b>Welcome to the GatherContent Umbraco Integration</b></h4>
+                    <h6 class="col-md-12"><b>Please enter your GatherContent credentials</b></h6>
+                    <small class="col-md-12">If you need any help please contact support@gathercontent.com</small>
+                </div>
+                <!--<umb-control-group label="API URL" description="Use the default unless directed otherwise">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.ApiUrl" required />
+                </umb-control-group>-->
+
+                <umb-control-group label="GatherContent User Email Address" description="This is the email address you use to login to GatherContent. Your permissions will determine what accounts, projects and content is available.">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.Username" required />
+                </umb-control-group>
+                <!--<umb-control-group label="GatherContent API key" description="Click to find out where you can generate your API Key">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.ApiKey" required/>
+                </umb-control-group>-->
+                <div class="umb-property">
+                    <div class="control-group umb-control-group">
+                        <div class="umb-el-wrap">
+                            <label class="control-label" for>
+                                GatherContent API key
+                                <a href="https://gathercontent.com/developers/authentication/" target="_blank"><small>Click to find out where you can generate your API Key</small></a>
+                            </label>
+                            <div class="controls controls-row">
+                                <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.ApiKey" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <umb-control-group label="Output Date format" description="Select your date format. The chosen date format will be used in the integration to output dates">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.DateFormat" />
+                </umb-control-group>
+                <umb-control-group label="Import Date format" description="Select your import date format. The chosen date format will be used in the integration to parse dates during import">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.ImportDateFormat" />
+                </umb-control-group>
+                <!--<umb-control-group label="ACCOUNT ITEM ID" description="Account Id">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.AccountItemId" required/>
+                </umb-control-group>-->
+                <umb-control-group label="GatherContent URL" description="Enter your GatherContent account URL">
+                    <input type="text" class="umb-editor umb-textstring" ng-model="setCont.settings.GatherContentUrl" required />
+                </umb-control-group>
+
+                <div class="row">
+                    <!--<button type="submit" data-hotkey="ctrl+s" class="btn col-md-3">
+                        SAVE API CREDENTIALS
+                    </button>-->
+                    <div class="btn-group umb-button">
+                        <div ng-if="setCont.saveButtonBusy" class="umb-button__progress -white"></div>
+                        <!--<div class="icon-check umb-button__success -white" ng-if="setCont.saveButtonSuccess"></div>-->
+                        <button type="submit" data-hotkey="ctrl+s" class="btn btn-success">
+                            <span ng-class="{'-hidden':setCont.saveButtonBusy}">Save Credentials</span>
+                        </button>
+                    </div>
+                    <small style="margin-left: 30%">These can be changed /updated later.</small>
+                </div>
+            </div>
+        </form>
+    </umb-tab-view>
+</umb-panel>

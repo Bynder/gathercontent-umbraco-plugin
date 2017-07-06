@@ -1,0 +1,85 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Manage Field Mappings</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="mapping.edit.controller as editCont">
+            <!--<umb-load-indicator ng-style="{'display': !editCont.busy ? 'none' : ''}"></umb-load-indicator>-->
+            <!--<form ng-style="{'display': editCont.busy ? 'none' : ''}" class="umb-pane container" ng-submit="editCont.submitForm()">-->
+            <form class="umb-pane container" ng-submit="editCont.submitForm()">
+                <umb-control-group label="Mapping Name" description="Add a mapping name. This will be used to distinguish mappings on import dialogs.">
+                    <input class="umb-editor umb-textstring" type="text" ng-model="editCont.model.MappingTitle" required ng-disabled="editCont.busy" />
+                </umb-control-group>
+                <umb-control-group label="Default Location" description="Specify the default location (node) in Umbraco where imported Items will be stored.">
+                    <input class="umb-editor umb-textstring" type="text" ng-model="editCont.model.DefaultLocationName" disabled />
+                    <a class="btn" ng-click="editCont.openTreeDialog()">Open</a>
+                </umb-control-group>
+                <umb-control-group class="row" label="GatherContent Project" description="Select GatherContent Project">
+                    <select ng-init="editCont.model.GcProject.Id = ''" class="umb-editor umb-dropdown" ng-model="editCont.model.GcProject.Id" 
+                            ng-change="editCont.selectProject()" required disabled>
+                        <option value="">Select Project</option>
+                        <option value="{{project.Id}}" ng-repeat="project in editCont.projects"
+                                ng-selected="editCont.model.GcProject.Id == project.Id">
+                            {{project.Name}}
+                        </option>
+                    </select>
+                </umb-control-group>
+                <umb-control-group class="row" label="Project Templates" description="Select the GatherContent Template you'd like to map">
+                    <select class="umb-editor umb-dropdown" ng-model="editCont.model.GcTemplate.Id" ng-change="editCont.selectTemplate()"
+                            required disabled>
+                        <option value="">Select Template</option>
+                        <option value="{{template.Id}}" ng-repeat="template in editCont.templates"
+                                ng-selected="editCont.model.GcTemplate.Id == template.Id">
+                            {{template.Name}}
+                        </option>
+                    </select>
+                </umb-control-group>
+                <umb-control-group label="Umbraco Template" description="Select the Umbraco Template you'd like to map">
+                    <select class="umb-editor umb-dropdown" ng-model="editCont.model.CmsTemplate.Id" ng-change="editCont.selectUmbTemplate()"
+                            required disabled>
+                        <option value="">Select Template</option>
+                        <option value="{{template.Id}}" ng-repeat="template in editCont.umbTemplates"
+                                ng-selected="editCont.model.CmsTemplate.Id == template.Id">
+                            {{template.Name}}
+                        </option>
+                    </select>
+                </umb-control-group>
+                <div ng-if="editCont.tabs.length > 0">
+                    <span>Choose the fields you wish to map from GatherContent into Umbraco. Only map the fields you need to import.</span>
+                    <div ng-repeat="tab in editCont.tabs" class="mapping-tab">
+                        <h3 style="background-color: grey; width: 100%; color: white; padding: 5px; border-radius: 3px; cursor: pointer;" ng-click="editCont.openOrShow($event, tab)">
+                            {{tab.TabName}}
+                            <span ng-style="{'display': tab.isOpenned ? 'none' : ''}" class="icon-navigation-up large"></span>
+                            <span ng-style="{'display': !tab.isOpenned ? 'none' : ''}" class="icon-navigation-down large"></span>
+                        </h3>
+                        <ul ng-style="{'display': $index != 0 ? 'none' : ''}" ng-init="tab.isOpenned = $index != 0 ? 0 : 1">
+                            <li ng-repeat="field in tab.Fields" style="list-style: none;">
+                                <h4 style="width: 40%; margin: 10px; display: inline-block;" ng-bind="!field.Name || field.Name.lenth == 0 ? '[Guidelines] ' : field.Name"></h4>
+                                <select style="width: 40%; margin: 10px;" ng-model="editCont.currentProps[field.Id]"
+                                        ng-options="prop as prop.Name for prop in (editCont.currentUmbTemplate.Fields | filterByTypes:field | filterByGCContentId) track by prop.Id">
+                                    <option value="" selected>Do not map</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p></p>
+                <small>You can always change your mappings later.</small>
+                <div class="umb-panel-footer btn-toolbar umb-btn-toolbar" style="position: relative;">
+                    <!--<a class="btn btn-success col-md-2" ng-click="editCont.submitForm()">Send</a>-->
+                    <div class="btn-group umb-button">
+                        <div ng-if="editCont.saveButtonBusy" class="umb-button__progress -white"></div>
+                        <!--<div class="icon-check umb-button__success -white" ng-if="setCont.saveButtonSuccess"></div>-->
+                        <button type="submit" data-hotkey="ctrl+s" class="btn btn-success" ng-disabled="editCont.busy">
+                            Save mapping configuration
+                        </button>
+                    </div>
+                    <a class="btn btn-back col-md-2" href="#/GatherContent/GatherContentTree/mappings/index" 
+                       ng-click="nav.hideNavigation()" ng-disabled="editCont.busy">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </umb-tab-view>
+</umb-panel>

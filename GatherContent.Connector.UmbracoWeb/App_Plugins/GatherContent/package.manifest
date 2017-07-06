@@ -1,0 +1,16 @@
+﻿{
+	javascript: [
+		'~/App_Plugins/GatherContent/app.js',
+		'~/App_Plugins/GatherContent/controller.js',
+		'~/App_Plugins/GatherContent/services/account.service.js',
+		'~/App_Plugins/GatherContent/services/mapping.service.js',
+		'~/App_Plugins/GatherContent/services/import.service.js',
+		'~/App_Plugins/GatherContent/services/update.service.js',
+		'~/App_Plugins/GatherContent/service.js',
+		'~/App_Plugins/GatherContent/filter.js',
+		'~/App_Plugins/GatherContent/directive.js'
+	],
+	css: [
+		'~/App_Plugins/GatherContent/css/style.css'
+	]
+ }

@@ -1,0 +1,116 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Import Content from GatherContent</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="import.controller as import" class="umb-pane">
+            <!--<umb-load-indicator ng-style="{'display': import.busy ? 'none' : ''}"></umb-load-indicator>-->
+            <div ng-style="{'display': !import.busy ? 'none' : ''}" class="umb-load-indicator content-column-body" style="width: 100%; height: 100%;"></div>
+            <div ng-style="{'display': import.busy ? 'none' : ''}">
+                <umb-control-group class="row" label="GatherContent Project" description="Select GatherContent project. You can only see projects with mapped templates in the dropdown.">
+                    <select class="umb-editor umb-dropdown" ng-model="import.model.GcProjectId" ng-change="import.selectProject()">
+                        <option value="">Select Project</option>
+                        <option value="{{project.Id}}" ng-selected="project.Id == import.model.GcProjectId" ng-repeat="project in import.projects">{{project.Name}}</option>
+                    </select>
+                </umb-control-group>
+                <!--<umb-control-group class="row" label="Project Templates" description="Please select GC Project Template">
+                    <select class="umb-editor umb-dropdown" ng-model="import.model.GcTemplateId" ng-change="import.selectTemplate()">
+                        <option value="">Select Template</option>
+                        <option value="{{template.Id}}" ng-repeat="template in import.templates">{{template.Name}}</option>
+                    </select>
+                </umb-control-group>-->
+                <umb-control-group label="Filter" description="Filter Items by template, workflow status or Item name">
+                    <select class="umb-dropdown" ng-model="import.model.GcTemplateId">
+                        <option value="">Select Template</option>
+                        <option value="{{template.Id}}" ng-selected="template.Id == import.model.GcTemplateId" ng-repeat="template in import.templates">{{template.Name}}</option>
+                    </select>
+                    <select class="umb-dropdown" ng-model="import.model.Status">
+                        <option value="">Select Status</option>
+                        <option value="{{status.Id}}" ng-selected="status.Id == import.model.Status" ng-repeat="status in import.statuses">{{status.Name}}</option>
+                    </select>
+                    <input class="umb-textstring" type="text" ng-model="import.filterText" placeholder="by name" />
+                </umb-control-group>
+                <div ng-if="!!import.items && import.items.length > 0" class="umb-listview" style="max-height: 600px; width: 600px; overflow: auto;">
+                    <span>You can only see items with mapped templates in the table.</span>
+                    <p></p>
+                    <div class="scroll_table_wrapper">
+                        <div class="scroll_table">
+                            <table class="table table-striped" ng-init="order = 'GcItem.Title'">
+                                <thead>
+                                <tr>
+                                    <th style="width: 2px;">
+                                        <div>
+                                            <input type="checkbox" id="allSelected" ng-model="import.allSelected"/>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <a href ng-click="order = import.selectTableHeader(order,'Status.Name')">Status</a>
+                                            <span ng-style="{'display': order == 'Status.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-Status.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <a href ng-click="order = import.selectTableHeader(order,'GcItem.Title')">Item Name</a>
+                                            <span ng-style="{'display': order == 'GcItem.Title' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-GcItem.Title' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </div>
+                                    </th>
+                                    <th style="width: 156px;">
+                                        <div style="width: 156px; padding-top: 10px;">
+                                            <a href ng-click="order = import.selectTableHeader(order,'GcItem.LastUpdatedInGc')">Last updated in GatherContent</a>
+                                            <span ng-style="{'display': order == 'GcItem.LastUpdatedInGc' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-GcItem.LastUpdatedInGc' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <a href ng-click="order = import.selectTableHeader(order,'Breadcrumb')">Path</a>
+                                            <span ng-style="{'display': order == 'Breadcrumb' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-Breadcrumb' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </div>
+                                    </th>
+                                    <th style="width: 115px;">
+                                        <div style="width: 115px;">
+                                            <a href ng-click="order = import.selectTableHeader(order,'GcTemplate.Name')">Template Name</a>
+                                            <span ng-style="{'display': order == 'GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-down large"></span>
+                                            <span ng-style="{'display': order == '-GcTemplate.Name' ? '' : 'none'}" class="icon-navigation-up large"></span>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in (import.filteredItems = (import.items | filter:{ GcItem.Title: import.filterText} | filter:{ Status.Id: import.model.Status} | filter:{ GcTemplate.Id: import.model.GcTemplateId} | orderBy:order))">
+                                    <td>
+                                        <input type="checkbox" ng-model="item.Checked" ng-change="import.checkItem()" style="display: block;"/>
+                                    </td>
+                                    <td>
+                                        <div style="white-space: nowrap; margin-right: 20px;">
+                                            <div ng-style="{'background-color': item.Status.Color}"
+                                                 style="width: 16px; height: 16px; margin: 2px; float: left;"></div>
+                                            {{item.Status.Name}}
+                                        </div>
+                                    </td>
+                                    <td>{{item.GcItem.Title}}</td>
+                                    <td>{{item.GcItem.LastUpdatedInGc}}</td>
+                                    <td>{{item.Breadcrumb}}</td>
+                                    <td>{{item.GcTemplate.Name}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div>
+                    <a class="btn btn-success" ng-if="!!import.items && import.items.length > 0"
+                       href ng-click="import.next()">Next</a>
+                    <a style="margin-left: 70%" href="mailto:support@gathercontent.com">Need help?</a>
+                </div>
+            </div>
+        </div>
+    </umb-tab-view>
+</umb-panel>

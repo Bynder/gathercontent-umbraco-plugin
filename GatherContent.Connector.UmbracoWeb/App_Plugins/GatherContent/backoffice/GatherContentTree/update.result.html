@@ -1,0 +1,59 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Result for update</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="update.result.controller as result" class="umb-pane">
+            <div ng-if="!!result.items && result.items.length > 0" class="umb-listview">
+                <div class="scroll_table_wrapper">
+                    <div class="scroll_table">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div>Status</div>
+                                    </th>
+                                    <th>
+                                        <div>Item Name</div>
+                                    </th>
+                                    <th>
+                                        <div>Update Status</div>
+                                    </th>
+                                    <th>
+                                        <div>Template Name</div>
+                                    </th>
+                                    <th style="width: 100px;">
+                                        <div style="width: 100px; padding-top: 10px;">Open in Umbraco</div>
+                                    </th>
+                                    <th>
+                                        <div>Open in GC</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in result.items">
+                                    <td>
+                                        <div style="white-space: nowrap; margin-right: 20px;">
+                                            <div ng-style="{'background-color': item.Status.Color}"
+                                                 style="width: 16px; height: 16px; margin: 2px; float: left;"></div>
+                                            {{item.Status.Name}}
+                                        </div>
+                                    </td>
+                                    <td>{{item.GcItem.Title}}</td>
+                                    <td ng-style="{'color': item.IsImportSuccessful == 0 ? 'red' : ''}">{{item.ImportMessage}}</td>
+                                    <td>{{item.GcTemplate.Name}}</td>
+                                    <td><a ng-disabled="item.IsImportSuccessful == 0" href="{{item.CmsLink}}">Open</a></td>
+                                    <td><a href="{{item.GcLink}}">Open</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-warning"
+               href="#/GatherContent/GatherContentTree/update/index" ng-click="nav.hideNavigation()">Back to Update</a>
+        </div>
+    </umb-tab-view>
+</umb-panel>

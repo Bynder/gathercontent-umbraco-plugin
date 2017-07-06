@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{783E134A-43F7-4700-BA0B-5EB4C0108CDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GatherContent.Connector.UmbracoRepositories</RootNamespace>
+    <AssemblyName>GatherContent.Connector.UmbracoRepositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.4\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.5\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+    <OutputPath>bin\Release 7.4\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+    <OutputPath>bin\Release 7.5\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+    <OutputPath>bin\Release 7.3\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug 7.3\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+	    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
+    </Reference>
+    <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+      <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataBaseModels\UmbAccountSettings.cs" />
+    <Compile Include="DataBaseModels\UmbFieldMapping.cs" />
+    <Compile Include="DataBaseModels\UmbProject.cs" />
+    <Compile Include="DataBaseModels\UmbTemplateMapping.cs" />
+    <Compile Include="EventHandlers\RegisterEvents.cs" />
+    <Compile Include="Helpers\DateTimeIsoExtensions.cs" />
+    <Compile Include="IoC\ConfigReader.cs" />
+    <Compile Include="IoC\FactoryRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountsRepository.cs" />
+    <Compile Include="Repositories\ItemsRepository.cs" />
+    <Compile Include="Repositories\MappingRepository.cs" />
+    <Compile Include="Repositories\SimpleMediaRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GatherContent.Connector.Entities\GatherContent.Connector.Entities.csproj">
+      <Project>{A40787E3-7DF6-41B9-90C0-41704AEA2BE3}</Project>
+      <Name>GatherContent.Connector.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatherContent.Connector.IRepositories\GatherContent.Connector.IRepositories.csproj">
+      <Project>{D164C4DD-8A92-43D0-B5D3-7F43C13D660C}</Project>
+      <Name>GatherContent.Connector.IRepositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

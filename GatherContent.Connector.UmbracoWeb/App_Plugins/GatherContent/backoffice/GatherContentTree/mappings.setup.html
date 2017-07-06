@@ -1,0 +1,39 @@
+﻿<umb-panel>
+    <umb-header>
+        <div class="umb-headline-editor-wrapper span12 ng-scope">
+            <h1 class="ng-binding">Gather Content</h1>
+        </div>
+    </umb-header>
+    <umb-tab-view>
+        <div ng-controller="mapping.setup.controller as setupCont">
+            <form class="umb-pane" ng-submit="setupCont.submit()">
+                <umb-control-group label="Umbraco Template" description="Please select Umbraco Template">
+                    <select style="width: 60%" ng-model="setupCont.currentTemplate"
+                            ng-options="template as template.name for template in setupCont.templates track by template.id"></select>
+                </umb-control-group>
+                <umb-control-group label="Mapping Name" description="Please add mapping name">
+                    <input style="width: 58%" type="text" />
+                </umb-control-group>
+
+                <h4>Select GC Properties</h4>
+
+                <div ng-repeat="tab in setupCont.gcTabs">
+                    <h3 style="background-color: grey; width: 100%; color: white; padding: 5px; border-radius: 3px;">
+                        {{tab.TabName}}
+                    </h3>
+                    <ul>
+                        <li ng-repeat="field in tab.Fields" style="list-style: none;">
+                            <h4 style="width: 40%; margin: 10px; display: inline-block;">{{field.FieldName}}</h4>
+                            <select style="width: 40%; margin: 10px;" ng-model="setupCont.currentProps[field.FieldId]"
+                                    ng-options="prop as prop.label for prop in setupCont.umbracoProps track by prop.id"></select>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <a class="btn" href="#/GatherContent/GatherContentTree/mappings/index" ng-click="nav.hideNavigation()">Back</a>
+                </div>
+            </form>
+        </div>
+    </umb-tab-view>
+</umb-panel>
