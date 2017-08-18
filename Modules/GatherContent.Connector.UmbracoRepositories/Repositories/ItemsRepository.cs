@@ -189,6 +189,15 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
                             value = value.Substring(0, 500);
                         createdItem.SetValue(field.Alias, value);
                         break;
+
+                    case "Umbraco.TextboxMultiple":
+                        createdItem.SetValue(field.Alias, value);
+                        break;
+
+                    case "Umbraco.TinyMCEv3":
+                        createdItem.SetValue(field.Alias, value);
+                        break;
+
                     case "Umbraco.Date":
                         string dateString = Regex.Replace(cmsField.Value.ToString(), "<.*?>", string.Empty).Trim();
                         string expectedFormat = FactoryRepository.Repositories.AccountRepository.GetAccountSettings().ImportDateFormat;
