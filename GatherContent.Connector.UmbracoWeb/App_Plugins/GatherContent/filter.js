@@ -34,7 +34,7 @@
 
                     case 'files':
                         if (umbItem.Type == 'Umbraco.MultipleMediaPicker'
-                            || umbItem.Type == 'Umbraco.MediaPicker')
+                            || umbItem.Type == 'Umbraco.MediaPicker' || umbItem.Type == 'Umbraco.MediaPicker2')
                             result.push(umbItem);
                         break;
                     default:

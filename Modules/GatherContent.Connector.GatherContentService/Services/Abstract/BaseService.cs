@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using GatherContent.Connector.Entities;
 using Newtonsoft.Json;
@@ -20,12 +21,14 @@ namespace GatherContent.Connector.GatherContentService.Services.Abstract
         private static string _apiUrl;
         private static string _userName;
         private static string _apiKey;
+	    private static string _cmsVersion;
 
-        protected BaseService(GCAccountSettings accountSettings)
+		protected BaseService(GCAccountSettings accountSettings)
         {
             _apiUrl = accountSettings.ApiUrl;
             _apiKey = accountSettings.ApiKey;
             _userName = accountSettings.Username;
+	        _cmsVersion = accountSettings.CmsVersion;
         }
 
         protected static WebRequest CreateRequest(string url)
@@ -39,9 +42,11 @@ namespace GatherContent.Connector.GatherContentService.Services.Abstract
             if (webrequest != null)
             {
                 string token = GetBasicAuthToken(_userName, _apiKey);
-                webrequest.Accept = "application/vnd.gathercontent.v0.5+json";
-                webrequest.Headers.Add("Authorization", "Basic " + token);
+	            string integrationVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
+				webrequest.Accept = "application/vnd.gathercontent.v0.5+json";
+                webrequest.Headers.Add("Authorization", "Basic " + token);
+	            webrequest.UserAgent = $"Integration-Umbraco-{_cmsVersion}/{integrationVersion}";
                 return webrequest;
             }
 

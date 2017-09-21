@@ -98,31 +98,31 @@
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
@@ -130,6 +130,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DataBaseModels\UmbAccountSettings.cs" />
     <Compile Include="DataBaseModels\UmbFieldMapping.cs" />
     <Compile Include="DataBaseModels\UmbProject.cs" />

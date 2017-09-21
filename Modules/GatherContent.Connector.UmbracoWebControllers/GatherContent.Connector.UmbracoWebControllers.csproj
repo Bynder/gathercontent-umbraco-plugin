@@ -95,7 +95,7 @@
     <Reference Include="interfaces" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\interfaces.dll</HintPath>
     </Reference>
-	    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
@@ -104,7 +104,7 @@
     <Reference Include="interfaces" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\interfaces.dll</HintPath>
     </Reference>
-	    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
+    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
@@ -113,7 +113,7 @@
     <Reference Include="interfaces" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\interfaces.dll</HintPath>
     </Reference>
-	    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
@@ -122,7 +122,7 @@
     <Reference Include="interfaces" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\interfaces.dll</HintPath>
     </Reference>
-	    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
@@ -131,7 +131,7 @@
     <Reference Include="interfaces" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\interfaces.dll</HintPath>
     </Reference>
-	    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+    <Reference Include="businesslogic" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
@@ -161,31 +161,31 @@
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Debug 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.5|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.5.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.4|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.4.0\lib\Umbraco.Core.dll</HintPath>
     </Reference>
-	 <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
+    <Reference Include="umbraco" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
       <HintPath>..\..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
     </Reference>
     <Reference Include="Umbraco.Core" Condition="'$(Configuration)|$(Platform)' == 'Release 7.3|AnyCPU'">
@@ -197,6 +197,9 @@
     </Reference>-->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\AccountSettingController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GatherContentTreeController.cs" />

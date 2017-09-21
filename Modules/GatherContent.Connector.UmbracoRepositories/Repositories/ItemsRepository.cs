@@ -259,7 +259,8 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
                         break;
                     case "Umbraco.MultipleMediaPicker":
                     case "Umbraco.MediaPicker":
-                        {
+                    case "Umbraco.MediaPicker2":
+						{
                             string imageIds = string.Empty;
                             if (cmsField.Files != null && cmsField.Files.Any())
                             {
@@ -276,7 +277,8 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
                                         switch (dataType.PropertyEditorAlias)
                                         {
                                             case "Umbraco.MediaPicker":
-                                                imageIds = FactoryRepository.Repositories.MediaRepository.UploadFile(path, file).ToString();
+                                            case "Umbraco.MediaPicker2":
+												imageIds = FactoryRepository.Repositories.MediaRepository.UploadFile(path, file).ToString();
                                                 break;
                                             case "Umbraco.MultipleMediaPicker":
                                                 imageIds += (imageIds.Length > 0 ? "," : "") +
@@ -425,7 +427,8 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
                             switch (dataType.PropertyEditorAlias)
                             {
                                 case "Umbraco.MediaPicker":
-                                    imageIds = FactoryRepository.Repositories.MediaRepository.UploadFile(path, file).ToString();
+                                case "Umbraco.MediaPicker2":
+									imageIds = FactoryRepository.Repositories.MediaRepository.UploadFile(path, file).ToString();
                                     break;
                                 case "Umbraco.MultipleMediaPicker":
                                     imageIds += (imageIds.Length > 0 ? "," : "") +

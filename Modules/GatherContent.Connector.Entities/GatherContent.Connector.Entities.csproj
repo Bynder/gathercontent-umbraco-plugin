@@ -97,6 +97,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Entities\AccountEntity.cs" />
     <Compile Include="Entities\Config.cs" />
     <Compile Include="Entities\FileEntity.cs" />

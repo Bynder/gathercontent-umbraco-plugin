@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Reflection;
 using GatherContent.Connector.Entities;
 using GatherContent.Connector.IRepositories;
 using GatherContent.Connector.IRepositories.Interfaces;
 using GatherContent.Connector.UmbracoRepositories.DataBaseModels;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Persistence;
 
 namespace GatherContent.Connector.UmbracoRepositories.Repositories
@@ -13,20 +15,21 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
         {
             var query = new Sql().Select("*").From<UmbAccountSettings>();
             var accountSettingU = this.ContextDatabase.Database.Fetch<UmbAccountSettings>(query).FirstOrDefault();
-            if (accountSettingU != null)
-            {
-                return new GCAccountSettings()
-                {
-                    //AccountItemId = accountSettingU.AccountItemId,
-                    ApiKey = accountSettingU.ApiKey,
-                    ApiUrl = Constants.ApiUrl,
-                    DateFormat = accountSettingU.DateFormat,
-                    ImportDateFormat = accountSettingU.ImportDateFormat,
-                    GatherContentUrl = accountSettingU.GatherContentUrl,
-                    Username = accountSettingU.ApiUserName
-                };
+			var gcAccountSettings = new GCAccountSettings();
+
+			if (accountSettingU != null)
+			{
+				gcAccountSettings.ApiKey = accountSettingU.ApiKey;
+				gcAccountSettings.ApiUrl = Constants.ApiUrl;
+				gcAccountSettings.DateFormat = accountSettingU.DateFormat;
+				gcAccountSettings.ImportDateFormat = accountSettingU.ImportDateFormat;
+				gcAccountSettings.GatherContentUrl = accountSettingU.GatherContentUrl;
+				gcAccountSettings.Username = accountSettingU.ApiUserName;
             }
-            return new GCAccountSettings();
+
+	        gcAccountSettings.CmsVersion = UmbracoVersion.Current.ToString();
+
+			return gcAccountSettings;
         }
 
         public void SetAccountSettings(GCAccountSettings accountSettings)

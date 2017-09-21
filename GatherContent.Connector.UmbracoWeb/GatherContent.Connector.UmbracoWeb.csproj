@@ -126,6 +126,9 @@
     <Content Include="App_Plugins\GatherContent\app.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MappingVM.cs" />
   </ItemGroup>
@@ -138,6 +141,7 @@
     <None Include="Properties\PublishProfiles\acceptance.pubxml" />
     <None Include="Properties\PublishProfiles\Local Dev 73 release.pubxml" />
     <None Include="Properties\PublishProfiles\Local Dev 75.pubxml" />
+    <None Include="Properties\PublishProfiles\Local Release 7.5.pubxml" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
   </ItemGroup>
   <ItemGroup>
