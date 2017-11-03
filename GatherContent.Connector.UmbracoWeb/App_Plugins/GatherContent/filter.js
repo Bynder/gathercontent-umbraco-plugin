@@ -9,7 +9,8 @@
                         if (umbItem.Type == 'Umbraco.TinyMCEv3'
                             || umbItem.Type == 'Umbraco.TextboxMultiple'
                             || umbItem.Type == 'Umbraco.Textbox'
-                            || umbItem.Type == 'Umbraco.Date') {
+                            || umbItem.Type == 'Umbraco.Date'
+                            || umbItem.Type == 'Umbraco.DateTime') {
                             result.push(umbItem);
                         }
                         break;

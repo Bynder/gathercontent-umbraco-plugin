@@ -199,7 +199,8 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
 						break;
 
 					case "Umbraco.Date":
-						string dateString = Regex.Replace(cmsField.Value.ToString(), "<.*?>", string.Empty).Trim();
+                    case "Umbraco.DateTime":
+                        string dateString = Regex.Replace(cmsField.Value.ToString(), "<.*?>", string.Empty).Trim();
 						string expectedFormat = FactoryRepository.Repositories.AccountRepository.GetAccountSettings().ImportDateFormat;
 						try
 						{
