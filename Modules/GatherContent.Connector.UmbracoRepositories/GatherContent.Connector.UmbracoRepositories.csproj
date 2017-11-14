@@ -138,6 +138,7 @@
     <Compile Include="DataBaseModels\UmbProject.cs" />
     <Compile Include="DataBaseModels\UmbTemplateMapping.cs" />
     <Compile Include="EventHandlers\RegisterEvents.cs" />
+    <Compile Include="Helpers\ContentHelper.cs" />
     <Compile Include="Helpers\DateTimeIsoExtensions.cs" />
     <Compile Include="IoC\ConfigReader.cs" />
     <Compile Include="IoC\FactoryRepository.cs" />

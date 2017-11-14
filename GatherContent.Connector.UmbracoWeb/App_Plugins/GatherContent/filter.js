@@ -22,7 +22,8 @@
                         break;
                     case 'choice_checkbox':
                         if (umbItem.Type == 'Umbraco.DropDownMultiple'
-                            || umbItem.Type == 'Umbraco.MultiNodeTreePicker')
+                            || umbItem.Type == 'Umbraco.MultiNodeTreePicker'
+                            || umbItem.Type == 'Umbraco.MultiNodeTreePicker2')
                             result.push(umbItem);
                     //break;
                     case 'choice_radio':
