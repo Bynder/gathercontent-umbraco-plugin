@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using GatherContent.Connector.IRepositories.Interfaces;
 using GatherContent.Connector.IRepositories.Models.Import;
 using GatherContent.Connector.IRepositories.Models.Mapping;
+using GatherContent.Connector.UmbracoRepositories.Helpers;
 using GatherContent.Connector.UmbracoRepositories.IoC;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
@@ -332,38 +333,39 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
 						}
 						break;
 					case "Umbraco.MultiNodeTreePicker":
-						{
-							string selectedItems = string.Empty;
-							UmbracoHelper umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-							var rootNodes = umbracoHelper.TypedContentAtRoot();
+					case "Umbraco.MultiNodeTreePicker2":
+					{
+						string selectedItems = string.Empty;
+						UmbracoHelper umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+						var rootNodes = umbracoHelper.TypedContentAtRoot();
 
-							foreach (var optionGC in cmsField.Options)
+						foreach (var optionGC in cmsField.Options)
+						{
+							string option = System.Web.HttpUtility.HtmlDecode(optionGC.TrimEnd());
+							foreach (var rootNode in rootNodes)
 							{
-								string option = System.Web.HttpUtility.HtmlDecode(optionGC.TrimEnd());
-								foreach (var rootNode in rootNodes)
+								var node = rootNode.DescendantsOrSelf().Where(x => x.Name == option);
+								if (node.Any())
 								{
-									var node = rootNode.DescendantsOrSelf().Where(x => x.Name == option);
-									if (node.Any())
+									selectedItems += (selectedItems.Length > 0 ? "," : "")
+									                 + ContentHelper.GetId(node.First(), dataType.PropertyEditorAlias);
+								}
+								else
+								{
+									var selectedNodes = SearchInChildrenNodes(rootNode, option);
+									if (selectedNodes.Any())
 									{
 										selectedItems += (selectedItems.Length > 0 ? "," : "")
-															 + node.First().Id;
-									}
-									else
-									{
-										var selectedNodes = SearchInChildrenNodes(rootNode, option);
-										if (selectedNodes.Any())
-										{
-											selectedItems += (selectedItems.Length > 0 ? "," : "")
-																 + selectedNodes.First().Id;
-										}
+										                 + ContentHelper.GetId(selectedNodes.First(), dataType.PropertyEditorAlias);
 									}
 								}
 							}
-
-							createdItem.SetValue(
-								createdItem.PropertyTypes.Single(
-									type => type.Id == Convert.ToInt32(cmsField.TemplateField.FieldId)).Alias, selectedItems);
 						}
+
+						createdItem.SetValue(
+							createdItem.PropertyTypes.Single(
+								type => type.Id == Convert.ToInt32(cmsField.TemplateField.FieldId)).Alias, selectedItems);
+					}
 						break;
 					default:
 
