@@ -139,6 +139,7 @@
     <Content Include="App_Config\repositories.config" />
     <Content Include="App_Plugins\GatherContent\backoffice\GatherContentTree\import.locations.toimport.html" />
     <None Include="Properties\PublishProfiles\acceptance.pubxml" />
+    <None Include="Properties\PublishProfiles\Dev 772.pubxml" />
     <None Include="Properties\PublishProfiles\Local Dev 73 release.pubxml" />
     <None Include="Properties\PublishProfiles\Local Dev 75.pubxml" />
     <None Include="Properties\PublishProfiles\Local Release 7.5.pubxml" />

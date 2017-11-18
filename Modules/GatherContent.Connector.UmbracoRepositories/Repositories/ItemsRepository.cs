@@ -202,14 +202,14 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
                     case "Umbraco.DateTime":
                         string dateString = Regex.Replace(cmsField.Value.ToString(), "<.*?>", string.Empty).Trim();
 						string expectedFormat = FactoryRepository.Repositories.AccountRepository.GetAccountSettings().ImportDateFormat;
-						try
-						{
-							dateString = dateString.Substring(0, 10);
-						}
-						catch (Exception e)
-						{
-							throw new ArgumentOutOfRangeException(String.Format("Error importing the date. Date must be in the format {0}", expectedFormat));
-						}
+						    try
+						    {
+							    dateString = dateString.Trim();
+						    }
+						    catch (Exception e)
+						    {
+							    throw new ArgumentOutOfRangeException(String.Format("Error importing the date. Date must be in the format {0}", expectedFormat));
+						    }
 						DateTime theDate;
 						bool result = DateTime.TryParseExact(dateString, expectedFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out theDate);
 						if (result)
