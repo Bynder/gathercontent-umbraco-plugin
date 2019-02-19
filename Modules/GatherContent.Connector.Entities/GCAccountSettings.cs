@@ -22,5 +22,6 @@
 
 		public string CmsVersion { get; set; }
 
-	}
+        public string TenantName { get; set; }
+    }
 }

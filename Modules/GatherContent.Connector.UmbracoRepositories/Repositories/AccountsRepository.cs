@@ -19,12 +19,20 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
 
 			if (accountSettingU != null)
 			{
-				gcAccountSettings.ApiKey = accountSettingU.ApiKey;
+                var tenantName = string.Empty;
+                var tenantMatch = System.Text.RegularExpressions.Regex.Match(accountSettingU.GatherContentUrl, @"^(http(s)?:\/\/)?(?<tenant>.*)\.gathercontent\.com(\/)?$");
+                if (tenantMatch.Groups["tenant"] != null)
+                {
+                    tenantName = tenantMatch.Groups["tenant"].Value.ToLower();
+                }
+
+                gcAccountSettings.ApiKey = accountSettingU.ApiKey;
 				gcAccountSettings.ApiUrl = Constants.ApiUrl;
 				gcAccountSettings.DateFormat = accountSettingU.DateFormat;
 				gcAccountSettings.ImportDateFormat = accountSettingU.ImportDateFormat;
 				gcAccountSettings.GatherContentUrl = accountSettingU.GatherContentUrl;
 				gcAccountSettings.Username = accountSettingU.ApiUserName;
+                gcAccountSettings.TenantName = tenantName;
             }
 
 	        gcAccountSettings.CmsVersion = UmbracoVersion.Current.ToString();

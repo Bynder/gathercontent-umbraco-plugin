@@ -22,13 +22,18 @@ namespace GatherContent.Connector.GatherContentService.Services.Abstract
         private static string _userName;
         private static string _apiKey;
 	    private static string _cmsVersion;
+        private static string _tenantName;
 
-		protected BaseService(GCAccountSettings accountSettings)
+
+        protected BaseService(GCAccountSettings accountSettings)
         {
             _apiUrl = accountSettings.ApiUrl;
             _apiKey = accountSettings.ApiKey;
             _userName = accountSettings.Username;
 	        _cmsVersion = accountSettings.CmsVersion;
+            _tenantName = accountSettings.TenantName;
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
         }
 
         protected static WebRequest CreateRequest(string url)

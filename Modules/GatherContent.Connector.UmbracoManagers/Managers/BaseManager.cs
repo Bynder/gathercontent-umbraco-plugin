@@ -20,8 +20,8 @@ namespace GatherContent.Connector.Managers.Managers
         protected Account GetAccount()
         {
             var accounts = FactoryService.Services.AccountsService.GetAccounts();
-            return accounts.Data.FirstOrDefault();
-           
+            return accounts.Data.FirstOrDefault(acc => acc.Slug.ToLower() == FactoryService.CurrentSettings.TenantName);
+
         }
 
         /// <summary>
