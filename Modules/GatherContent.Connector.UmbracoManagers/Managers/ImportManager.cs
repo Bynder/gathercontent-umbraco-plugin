@@ -1011,7 +1011,7 @@ namespace GatherContent.Connector.Managers.Managers
             List<ItemEntity> items = new List<ItemEntity>();
             Dictionary<string, List<ItemEntity>> paths = new Dictionary<string, List<ItemEntity>>();
             var accounts = FactoryService.Services.AccountsService.GetAccounts();
-            var account = accounts.Data.FirstOrDefault();
+            var account = accounts.Data.FirstOrDefault(acc => acc.Slug.ToLower() == FactoryService.CurrentSettings.TenantName);
 
             if (account != null)
             {
