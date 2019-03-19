@@ -11,6 +11,7 @@ using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using File = GatherContent.Connector.IRepositories.Models.Import.File;
+using GatherContent.Connector.GatherContentService.Services;
 
 namespace GatherContent.Connector.UmbracoRepositories.Repositories
 {
@@ -18,29 +19,30 @@ namespace GatherContent.Connector.UmbracoRepositories.Repositories
 	{
 		public object UploadFile(string targetPath, File fileInfo)
 		{
-			string uri = fileInfo.Url.StartsWith("http") ? fileInfo.Url : "https://gathercontent.s3.amazonaws.com/" + fileInfo.Url;
 
-			string extension = string.Empty;
+            var gcsettings = new AccountsRepository().GetAccountSettings();
+            var itemService = new ItemsService(gcsettings);
+
+            string extension = string.Empty;
 			if (fileInfo.FileName.Contains("."))
 			{
 				extension = fileInfo.FileName.Substring(fileInfo.FileName.LastIndexOf('.') + 1).ToLower();
 			}
+            
+            var memoryStream = itemService.DownloadFile(fileInfo.FileId) as MemoryStream;
+            try
+            {
+                if (memoryStream.Length > 0)
+                {
+                    var media = CreateMedia(targetPath, fileInfo, extension, memoryStream);
+                    return media;
+                }
+            }
+            finally
+            {
+                memoryStream.Close();
+            }
 
-			var request = (HttpWebRequest)WebRequest.Create(uri);
-			var resp = (HttpWebResponse)request.GetResponse();
-			var stream = resp.GetResponseStream();
-
-			using (var memoryStream = new MemoryStream())
-			{
-				memoryStream.Seek(0, SeekOrigin.Begin);
-				stream?.CopyTo(memoryStream);
-
-				if (memoryStream.Length > 0)
-				{
-					int media = CreateMedia(targetPath, fileInfo, extension, memoryStream);
-					return media;
-				}
-			}
 			return null;
 		}
 

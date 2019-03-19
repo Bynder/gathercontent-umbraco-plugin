@@ -1,4 +1,5 @@
 ﻿using GatherContent.Connector.Entities.Entities;
+using System.IO;
 
 namespace GatherContent.Connector.GatherContentService.Interfaces
 {
@@ -14,5 +15,7 @@ namespace GatherContent.Connector.GatherContentService.Interfaces
         void ChooseStatusForItem(string itemId, string statusId);
 
         ItemFiles GetItemFiles(string itemId);
+
+        Stream DownloadFile(int fileId);
     }
 }

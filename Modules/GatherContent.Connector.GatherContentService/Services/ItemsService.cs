@@ -5,6 +5,7 @@ using GatherContent.Connector.Entities;
 using GatherContent.Connector.Entities.Entities;
 using GatherContent.Connector.GatherContentService.Interfaces;
 using GatherContent.Connector.GatherContentService.Services.Abstract;
+using System.IO;
 
 namespace GatherContent.Connector.GatherContentService.Services
 {
@@ -161,6 +162,15 @@ namespace GatherContent.Connector.GatherContentService.Services
             AddPostData(data, webrequest);
 
             ReadResponse(webrequest);
+        }
+
+        public Stream DownloadFile(int fileId)
+        {
+            string url = string.Format("files/{0}/download", fileId);
+            WebRequest webrequest = CreateRequest(url);
+            webrequest.Method = WebRequestMethods.Http.Get;
+            var response = ReadBinaryResponse(webrequest);
+            return response;
         }
     }
 }
